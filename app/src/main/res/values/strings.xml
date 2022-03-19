@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Assigment1</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tape_name_here">Tape Name Here</string>
+    <string name="next">Next</string>
+    <string name="welcome">Welcome</string>
+    <string name="lorem1">This is app for suite media mobile developer test</string>
+    <string name="choose_guest">Choose Guest</string>
+    <string name="choose_event">Choose Event</string>
+    <string name="hallo">Hallo,</string>
+    <string name="copyright">Copyright © Suitmedia All rights reserved.</string>
+    <string name="event">EVENT</string>
+    <string name="guests">GUESTS</string>
+</resources>
