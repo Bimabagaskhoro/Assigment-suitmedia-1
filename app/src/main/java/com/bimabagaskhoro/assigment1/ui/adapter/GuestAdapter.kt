@@ -1,5 +1,6 @@
 package com.bimabagaskhoro.assigment1.ui.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,11 +44,9 @@ class GuestAdapter : RecyclerView.Adapter<GuestAdapter.ListViewHolder>() {
                     .into(imgGuest)
                 tvFirstName.text = data.firstName
                 tvLastName.text = data.lastName
-            }
-        }
-        init {
-            binding.root.setOnClickListener {
-                onItemClick?.invoke(listData[adapterPosition])
+                itemView.setOnClickListener {
+                    onItemClick?.invoke(data)
+                }
             }
         }
     }

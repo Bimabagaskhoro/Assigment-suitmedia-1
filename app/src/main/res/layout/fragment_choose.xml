@@ -90,6 +90,7 @@
             android:text="@string/choose_event"
             android:textColor="@color/white"
             android:textSize="21sp" />
+
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
@@ -115,5 +116,4 @@
             android:textColor="@color/white"
             android:textSize="21sp" />
     </androidx.cardview.widget.CardView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

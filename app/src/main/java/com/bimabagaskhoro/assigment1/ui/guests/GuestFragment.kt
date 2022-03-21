@@ -7,12 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bimabagaskhoro.assigment1.R
 import com.bimabagaskhoro.assigment1.data.Resource
 import com.bimabagaskhoro.assigment1.databinding.FragmentGuestBinding
 import com.bimabagaskhoro.assigment1.ui.adapter.GuestAdapter
+import com.bimabagaskhoro.assigment1.ui.choose.ChooseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -22,6 +24,9 @@ class GuestFragment : Fragment() {
 
     private var _binding: FragmentGuestBinding? = null
     private val binding get() = _binding!!
+
+
+    private lateinit var guestAdapter: GuestAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,7 +41,7 @@ class GuestFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         if (activity != null) {
-            val tourismAdapter = GuestAdapter()
+            val guestAdapter = GuestAdapter()
 
             viewModel.guest.observe(viewLifecycleOwner, { tourism ->
                 if (tourism != null) {
@@ -44,7 +49,10 @@ class GuestFragment : Fragment() {
                         is Resource.Loading -> binding.progressbar.visibility = View.VISIBLE
                         is Resource.Success -> {
                             binding.progressbar.visibility = View.GONE
-                            tourismAdapter.setData(tourism.data)
+                            guestAdapter.setData(tourism.data)
+                            guestAdapter.onItemClick = {
+                                findNavController().navigate(R.id.action_guestFragment_to_chooseFragment)
+                            }
                         }
                         is Resource.Error -> {
                             binding.progressbar.visibility = View.VISIBLE
@@ -56,7 +64,7 @@ class GuestFragment : Fragment() {
             binding.apply {
                 rvGuest.layoutManager =  GridLayoutManager(context, 2)
                 rvGuest.setHasFixedSize(true)
-                rvGuest.adapter = tourismAdapter
+                rvGuest.adapter = guestAdapter
                 imgBack.setOnClickListener {
                     it.findNavController().navigate(R.id.action_guestFragment_to_chooseFragment)
                 }

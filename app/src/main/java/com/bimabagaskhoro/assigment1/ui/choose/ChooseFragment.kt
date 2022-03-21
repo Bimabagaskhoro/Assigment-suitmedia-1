@@ -9,15 +9,21 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bimabagaskhoro.assigment1.R
 import com.bimabagaskhoro.assigment1.databinding.FragmentChooseBinding
+import com.bimabagaskhoro.assigment1.domain.model.ItemEvent
+import com.bimabagaskhoro.assigment1.domain.model.ItemGuest
 import com.bimabagaskhoro.assigment1.sf.AppSharedPreferencesViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ChooseFragment : Fragment() {
+    companion object {
+        const val EXTRA_DATA_EVENT = "extra_data_event"
+    }
 
     private var _binding: FragmentChooseBinding? = null
     private val  binding get() = _binding!!
     private val viewModel: AppSharedPreferencesViewModel by viewModels()
+    private lateinit var itemEvent: ItemEvent
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,6 +36,11 @@ class ChooseFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        if (arguments != null) {
+            itemEvent = arguments?.getParcelable(EXTRA_DATA_EVENT)!!
+            binding.tvChooseEvent.text = itemEvent.name
+        }
+
         binding.apply {
             tvName.text = viewModel.getUser().toString()
             tvChooseEvent.setOnClickListener {
