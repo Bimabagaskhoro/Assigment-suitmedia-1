@@ -25,9 +25,6 @@ class GuestFragment : Fragment() {
     private var _binding: FragmentGuestBinding? = null
     private val binding get() = _binding!!
 
-
-    private lateinit var guestAdapter: GuestAdapter
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -42,6 +39,9 @@ class GuestFragment : Fragment() {
 
         if (activity != null) {
             val guestAdapter = GuestAdapter()
+            guestAdapter.onItemClick = {
+                findNavController().navigate(R.id.action_guestFragment_to_chooseFragment)
+            }
 
             viewModel.guest.observe(viewLifecycleOwner, { tourism ->
                 if (tourism != null) {
@@ -50,12 +50,10 @@ class GuestFragment : Fragment() {
                         is Resource.Success -> {
                             binding.progressbar.visibility = View.GONE
                             guestAdapter.setData(tourism.data)
-                            guestAdapter.onItemClick = {
-                                findNavController().navigate(R.id.action_guestFragment_to_chooseFragment)
-                            }
+
                         }
                         is Resource.Error -> {
-                            binding.progressbar.visibility = View.VISIBLE
+                            binding.progressbar.visibility = View.GONE
                         }
                     }
                 }

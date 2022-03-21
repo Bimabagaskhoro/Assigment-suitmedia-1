@@ -16,7 +16,10 @@ import com.bimabagaskhoro.assigment1.domain.model.ItemEvent
 import com.bimabagaskhoro.assigment1.ui.adapter.EventAdapter
 import com.bimabagaskhoro.assigment1.ui.choose.ChooseFragment
 import com.bimabagaskhoro.assigment1.utils.Constant
+import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.HiltAndroidApp
 
+@AndroidEntryPoint
 class EventFragment : Fragment() {
     private var _binding: FragmentEventBinding? = null
     private val binding get() = _binding!!

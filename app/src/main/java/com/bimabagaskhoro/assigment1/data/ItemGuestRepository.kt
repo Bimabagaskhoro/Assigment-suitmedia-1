@@ -29,7 +29,7 @@ class ItemGuestRepository  @Inject constructor(
             }
 
             override fun shouldFetch(data: List<ItemGuest>?): Boolean =
-                false
+                true
 
             override suspend fun createCall(): Flow<ApiResponse<List<DataItem>>> =
                 remoteDataSource.getAllItemGuest()
